@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_fmxl_practice" default="compile.module.fmxl_practice">
+  <dirname property="module.fmxl_practice.basedir" file="${ant.file.module_fmxl_practice}"/>
+  
+  <property name="module.jdk.home.fmxl_practice" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.fmxl_practice" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.fmxl_practice" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.fmxl_practice" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="fmxl_practice.output.dir" value="${module.fmxl_practice.basedir}/out/production/fmxl practice"/>
+  <property name="fmxl_practice.testoutput.dir" value="${module.fmxl_practice.basedir}/out/test/fmxl practice"/>
+  
+  <path id="fmxl_practice.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="fmxl_practice.module.production.classpath">
+    <path refid="${module.jdk.classpath.fmxl_practice}"/>
+  </path>
+  
+  <path id="fmxl_practice.runtime.production.module.classpath">
+    <pathelement location="${fmxl_practice.output.dir}"/>
+  </path>
+  
+  <path id="fmxl_practice.module.classpath">
+    <path refid="${module.jdk.classpath.fmxl_practice}"/>
+    <pathelement location="${fmxl_practice.output.dir}"/>
+  </path>
+  
+  <path id="fmxl_practice.runtime.module.classpath">
+    <pathelement location="${fmxl_practice.testoutput.dir}"/>
+    <pathelement location="${fmxl_practice.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.fmxl_practice">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.fmxl_practice">
+    <patternset refid="excluded.from.module.fmxl_practice"/>
+  </patternset>
+  
+  <path id="fmxl_practice.module.sourcepath">
+    <dirset dir="${module.fmxl_practice.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.fmxl_practice" depends="compile.module.fmxl_practice.production,compile.module.fmxl_practice.tests" description="Compile module fmxl practice"/>
+  
+  <target name="compile.module.fmxl_practice.production" depends="register.custom.compilers" description="Compile module fmxl practice; production classes">
+    <mkdir dir="${fmxl_practice.output.dir}"/>
+    <javac2 destdir="${fmxl_practice.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.fmxl_practice}/javac">
+      <compilerarg line="${compiler.args.fmxl_practice}"/>
+      <bootclasspath refid="fmxl_practice.module.bootclasspath"/>
+      <classpath refid="fmxl_practice.module.production.classpath"/>
+      <src refid="fmxl_practice.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.fmxl_practice"/>
+    </javac2>
+    
+    <copy todir="${fmxl_practice.output.dir}">
+      <fileset dir="${module.fmxl_practice.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.fmxl_practice.tests" depends="register.custom.compilers,compile.module.fmxl_practice.production" description="compile module fmxl practice; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.fmxl_practice" description="cleanup module">
+    <delete dir="${fmxl_practice.output.dir}"/>
+    <delete dir="${fmxl_practice.testoutput.dir}"/>
+  </target>
+</project>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.InfoController">
+   <children>
+      <Label layoutX="28.0" layoutY="79.0" text="Author: Daniel Walker" />
+      <Label layoutX="28.0" layoutY="104.0" text="Swords and Shields Java Game" />
+      <Label layoutX="28.0" layoutY="130.0" text="Built using IntelliJ IDEA" />
+      <Label layoutX="242.0" layoutY="169.0" text="Info Page" underline="true">
+         <font>
+            <Font name="System Bold Italic" size="26.0" />
+         </font>
+      </Label>
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#menuClicked" text="Menu" />
+   </children>
+</Pane>
